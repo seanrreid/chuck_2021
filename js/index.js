@@ -15,15 +15,15 @@ function getCategories() {
 }
 
 function updateBody(quote) {
-    const paragraph = document.createElement('#modal p');
+    const paragraph = document.querySelector('#modal p');
     paragraph.innerHTML = quote;
     toggleModal();
 }
 
 function buildCategoryList(categoryList) {
-    // Filter out the 'explicit', 'celebrity', and 'animal' categories
+    // Filter out the 'explicit', 'religion', and 'political' categories
     const filteredList = categoryList.filter(function (category) {
-        if (category !== 'explicit' && category !== 'celebrity' && category !== 'animal') {
+        if (category !== 'explicit' && category !== 'political' && category !== 'religion') {
             return category;
         }
     });
@@ -41,6 +41,13 @@ function buildCategoryList(categoryList) {
     categorySelect.addEventListener('change', function (event) {
         getQuote(event.target.value);
     })
+}
+
+closeModal.addEventListener('click', toggleModal);
+
+function toggleModal() {
+    const modalOverlay = document.querySelector('#overlay');
+    modalOverlay.classList.toggle('visible');
 }
 
 getCategories();
