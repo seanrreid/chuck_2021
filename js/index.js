@@ -15,19 +15,9 @@ function getCategories() {
 }
 
 function updateBody(quote) {
-    const main = document.querySelector('#main');
-
-    // Find and remove any existing paragraphs.
-    const paragraphs = document.querySelectorAll('p');
-    if (paragraphs.length > 0) {
-        paragraphs.forEach(function (paragraph) {
-            paragraph.remove();
-        });
-    }
-
-    const paragraph = document.createElement('p');
+    const paragraph = document.createElement('#modal p');
     paragraph.innerHTML = quote;
-    main.appendChild(paragraph);
+    toggleModal();
 }
 
 function buildCategoryList(categoryList) {
