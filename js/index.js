@@ -15,38 +15,28 @@ function getCategories() {
 }
 
 function updateBody(quote) {
-    const main = document.querySelector('#main');
-
-    // Find and remove any existing paragraphs.
-    const paragraphs = document.querySelectorAll('p');
-    if (paragraphs.length > 0) {
-        paragraphs.forEach(function (paragraph) {
-            paragraph.remove();
-        });
-    }
-
-    const paragraph = document.createElement('p');
+    const paragraph = document.querySelector('#chuckSays');
     paragraph.innerHTML = quote;
-    main.appendChild(paragraph);
 }
 
 function buildCategoryList(categoryList) {
-    // Filter out the 'explicit', 'celebrity', and 'animal' categories
+    // Filter out the 'explicit', 'political', and 'religion' categories
     const filteredList = categoryList.filter(function (category) {
-        if (category !== 'explicit' && category !== 'celebrity' && category !== 'animal') {
+        if (category !== 'explicit' && category !== 'political' && category !== 'religion') {
             return category;
         }
     });
 
-    const form = document.querySelector('#changeQuote');
+    const selectGroup = document.querySelector('#selectGroup');
     const categorySelect = document.createElement('select');
+    categorySelect.classList.add('form-select');
     filteredList.map(function (category) {
         const categoryOption = document.createElement('option');
         categoryOption.value = category;
         categoryOption.text = category;
         categorySelect.appendChild(categoryOption);
     });
-    form.appendChild(categorySelect);
+    selectGroup.appendChild(categorySelect);
 
     categorySelect.addEventListener('change', function (event) {
         getQuote(event.target.value);
